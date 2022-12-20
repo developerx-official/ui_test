@@ -1,8 +1,11 @@
+use eframe::egui;
+use eframe::egui::{
+    Align2, Color32, Context, Label, RichText, ScrollArea, Separator, Spinner, TextStyle,
+    TopBottomPanel, Vec2,
+};
+use poll_promise::Promise;
 use std::thread::sleep;
 use std::time::Duration;
-use eframe::egui;
-use eframe::egui::{Align2, Color32, Context, Label, RichText, ScrollArea, Separator, Spinner, TextStyle, TopBottomPanel, Vec2};
-use poll_promise::Promise;
 
 pub(crate) struct MyApp {
     allowed_to_close: bool,
@@ -25,25 +28,22 @@ impl eframe::App for MyApp {
     fn update(&mut self, ctx: &Context, frame: &mut eframe::Frame) {
         // Init stuff
         self.load_promise.get_or_insert_with(|| {
-            let p = Promise::spawn_thread("bg_thread", || {
+            Promise::spawn_thread("bg_thread", || {
                 sleep(Duration::from_secs(2));
-            });
-            p
+            })
         });
 
         // Spinner
         match &self.load_promise {
             None => {}
-            Some(promise) => {
-                match promise.ready() {
-                    None => {
-                        render_spinner(ctx);
-                    }
-                    Some(_) => {
-                        render_main_body(ctx);
-                    }
+            Some(promise) => match promise.ready() {
+                None => {
+                    render_spinner(ctx);
                 }
-            }
+                Some(_) => {
+                    render_main_body(ctx);
+                }
+            },
         }
 
         // Confirmation dialogue
@@ -51,7 +51,10 @@ impl eframe::App for MyApp {
             egui::Window::new("Quit?")
                 .collapsible(false)
                 .resizable(false)
-                .anchor(Align2::CENTER_CENTER, Into::<Vec2>::into(Vec2::new(0_f32, 0_f32)))
+                .anchor(
+                    Align2::CENTER_CENTER,
+                    Into::<Vec2>::into(Vec2::new(0_f32, 0_f32)),
+                )
                 .default_size(Vec2::new(150_f32, 100_f32))
                 .show(ctx, |ui| {
                     ui.columns(2, |ui| {
@@ -80,8 +83,7 @@ impl eframe::App for MyApp {
 fn render_spinner(ctx: &Context) {
     egui::CentralPanel::default().show(ctx, |ui| {
         ui.centered_and_justified(|ui| {
-            ui.add(Spinner::new()
-                .size(40_f32));
+            ui.add(Spinner::new().size(40_f32));
         });
     });
     TopBottomPanel::bottom("loading_bottom_panel").show(ctx, |ui| {
@@ -97,15 +99,17 @@ fn render_spinner(ctx: &Context) {
 
 fn render_main_body(ctx: &Context) {
     // Bottom
-    TopBottomPanel::bottom("bottom_panel").show_separator_line(false).show(ctx, |ui| {
-        ui.vertical_centered(|ui| {
-            ui.add(Separator::default().spacing(0_f32));
-            ui.add_space(10_f32);
-            ui.label(RichText::new("Made by Developer X").size(15_f32));
-            ui.hyperlink_to("Dexeloper", "https://dexeloper.com");
-            ui.add_space(10_f32);
+    TopBottomPanel::bottom("bottom_panel")
+        .show_separator_line(false)
+        .show(ctx, |ui| {
+            ui.vertical_centered(|ui| {
+                ui.add(Separator::default().spacing(0_f32));
+                ui.add_space(10_f32);
+                ui.label(RichText::new("Made by Developer X").size(15_f32));
+                ui.hyperlink_to("Dexeloper", "https://dexeloper.com");
+                ui.add_space(10_f32);
+            });
         });
-    });
 
     // Main Body
     egui::CentralPanel::default().show(ctx, |ui| {
