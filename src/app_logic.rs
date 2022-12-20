@@ -7,20 +7,11 @@ use poll_promise::Promise;
 use std::thread::sleep;
 use std::time::Duration;
 
+#[derive(Default)]
 pub(crate) struct MyApp {
     allowed_to_close: bool,
     show_confirmation_dialog: bool,
     load_promise: Option<Promise<()>>,
-}
-
-impl Default for MyApp {
-    fn default() -> Self {
-        Self {
-            allowed_to_close: false,
-            show_confirmation_dialog: false,
-            load_promise: None,
-        }
-    }
 }
 
 impl eframe::App for MyApp {
