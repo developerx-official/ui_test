@@ -84,7 +84,7 @@ fn render_spinner(ctx: &Context) {
                 .size(40_f32));
         });
     });
-    egui::TopBottomPanel::bottom("loading_bottom_panel").show(ctx, |ui| {
+    TopBottomPanel::bottom("loading_bottom_panel").show(ctx, |ui| {
         ui.centered_and_justified(|ui| {
             ui.scope(|ui| {
                 ui.visuals_mut().override_text_color = Some(Color32::WHITE);
@@ -134,15 +134,12 @@ fn render_main_body(ctx: &Context) {
                    a) reason\n\
                    b) reason\n\
                    c) reason\n\
-                   We do this by:\n\
-                   a) reason\n\
-                   b) reason\n\
-                   c) reason\n\
-                   We do this by:\n\
-                   a) reason\n\
-                   b) reason\n\
-                   c) reason\n\
-                   End Test")
+                   d) reason\n\
+                   e) reason\n\
+                   f) reason\n\
+                   g) reason\n\
+                   h) reason\n\
+                   i) reason")
                         .size(15_f32));
                 });
             });
