@@ -3,7 +3,7 @@
 
 use eframe::{egui, HardwareAcceleration};
 
-mod app;
+mod app_logic;
 
 fn main() {
     let options = eframe::NativeOptions {
@@ -16,6 +16,6 @@ fn main() {
     eframe::run_native(
         "My egui App",
         options,
-        Box::new(|_cc| Box::<app::MyApp>::default()),
+        Box::new(|_cc| Box::<app_logic::MyApp>::default()),
     )
 }
