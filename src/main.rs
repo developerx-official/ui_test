@@ -5,7 +5,7 @@ use eframe::{egui, HardwareAcceleration};
 
 mod app_logic;
 
-fn main() {
+fn main() -> Result<(), anyhow::Error> {
     let options = eframe::NativeOptions {
         initial_window_size: Some(egui::vec2(640_f32, 480_f32)),
         resizable: true,
@@ -17,5 +17,6 @@ fn main() {
         "My egui App",
         options,
         Box::new(|_cc| Box::<app_logic::MyApp>::default()),
-    );
+    )?;
+    Ok(())
 }
