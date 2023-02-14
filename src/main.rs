@@ -18,4 +18,5 @@ fn main() -> Result<(), anyhow::Error> {
         options,
         Box::new(|_cc| Box::<app_logic::MyApp>::default()),
     )?;
+    Ok(())
 }
