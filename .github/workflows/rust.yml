@@ -23,14 +23,18 @@ jobs:
       run: cargo fmt --all -- --check
     - name: Run clippy
       run: cargo clippy -- -D warnings
-    - name: Build for release
+    - name: Install podman and cross
       run: |
-        cargo build -r
-    - name: Compress release thing
+        sudo apt install -y podman
+        cargo install cross
+    - name: Build x86_64-pc-windows-gnu
+      run: |
+        cross run --target x86_64-pc-windows-gnu -r
+    - name: Compress x86_64-pc-windows-gnu
       uses: "vimtor/action-zip@v1.1"
       with:
-        files: "target/release/ui_test"
-        dest: "linux-x64.zip"
+        files: "target/x86_64-pc-windows-gnu/release/ui_test"
+        dest: "x86_64-pc-windows-gnu.zip"
     - name: "Git Version"
       id: "version"
       uses: "codacy/git-version@2.4.0"
