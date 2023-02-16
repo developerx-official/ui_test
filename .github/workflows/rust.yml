@@ -45,15 +45,15 @@ jobs:
       with:
         files: "target/x86_64-unknown-linux-musl/release/ui_test"
         dest: "x86_64-unknown-linux-musl.zip"
-    - name: Build aarch64-unknown-linux-musl
+    - name: Build aarch64-unknown-linux-gnu
       run: |
-        cross build --target aarch64-unknown-linux-musl -r
-        strip -s target/aarch64-unknown-linux-musl/release/ui_test
-    - name: Compress aarch64-unknown-linux-musl
+        cross build --target aarch64-unknown-linux-gnu -r
+        strip -s target/aarch64-unknown-linux-gnu/release/ui_test
+    - name: Compress aarch64-unknown-linux-gnu
       uses: "vimtor/action-zip@v1.1"
       with:
-        files: "target/aarch64-unknown-linux-musl/release/ui_test"
-        dest: "aarch64-unknown-linux-musl.zip"
+        files: "target/aarch64-unknown-linux-gnu/release/ui_test"
+        dest: "aarch64-unknown-linux-gnu.zip"
     - name: Build aarch64-pc-windows-msvc
       run: |
         cross build --target aarch64-pc-windows-msvc -r
