@@ -5,15 +5,11 @@ on:
     branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
-
 env:
   CARGO_TERM_COLOR: always
-
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v3
     - name: Build
@@ -24,3 +20,22 @@ jobs:
       run: cargo fmt --all -- --check
     - name: Run clippy
       run: cargo clippy -- -D warnings
+    - name: Build for release
+      run: |
+        cargo build -r
+    - name: Compress release thing
+      uses: "vimtor/action-zip@v1.1"
+      with:
+        files: "target/release/ui_test"
+        dest: "linux-x64.zip"
+    - name: "Git Version"
+      id: "version"
+      uses: "codacy/git-version@2.4.0"
+    - uses: "marvinpinto/action-automatic-releases@latest"
+      with:
+        repo_token: "${{ secrets.GITHUB_TOKEN }}"
+        automatic_release_tag: "${{ staps.version.outputs.version }}"
+        prerelease: false
+        title: "Master Build"
+        files: |
+          *.zip
