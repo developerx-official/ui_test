@@ -45,24 +45,24 @@ jobs:
       with:
         files: "target/x86_64-unknown-linux-musl/release/ui_test"
         dest: "x86_64-unknown-linux-musl.zip"
-    - name: Build aarch64-unknown-linux-gnu
+    - name: Build i686-pc-windows-gnu
       run: |
-        cross build --target aarch64-unknown-linux-gnu -r
-        strip -s target/aarch64-unknown-linux-gnu/release/ui_test
-    - name: Compress aarch64-unknown-linux-gnu
+        cross build --target i686-pc-windows-gnu -r
+        strip -s target/i686-pc-windows-gnu/release/ui_test.exe
+    - name: Compress i686-pc-windows-gnu
       uses: "vimtor/action-zip@v1.1"
       with:
-        files: "target/aarch64-unknown-linux-gnu/release/ui_test"
-        dest: "aarch64-unknown-linux-gnu.zip"
-    - name: Build aarch64-pc-windows-msvc
+        files: "target/i686-pc-windows-gnu/release/ui_test.exe"
+        dest: "i686-pc-windows-gnu.zip"
+    - name: Build i686-unknown-linux-gnu
       run: |
-        cross build --target aarch64-pc-windows-msvc -r
-        strip -s target/aarch64-pc-windows-msvc/release/ui_test
-    - name: Compress aarch64-pc-windows-msvc
+        cross build --target i686-unknown-linux-gnu -r
+        strip -s target/i686-unknown-linux-gnu/release/ui_test
+    - name: Compress i686-unknown-linux-gnu
       uses: "vimtor/action-zip@v1.1"
       with:
-        files: "target/aarch64-pc-windows-msvc/release/ui_test"
-        dest: "aarch64-pc-windows-msvc.zip"
+        files: "target/i686-unknown-linux-gnu/release/ui_test"
+        dest: "i686-unknown-linux-gnu.zip"
     - name: "Git Version"
       id: "version"
       uses: "codacy/git-version@2.4.0"
