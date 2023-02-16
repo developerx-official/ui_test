@@ -1,0 +1,43 @@
+name: Rust Deploy
+on:
+  push:
+    branches: [ "master" ]
+env:
+  CARGO_TERM_COLOR: always
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Install podman and cross
+      run: |
+        sudo apt install -y podman
+        cargo install cross
+    - name: Build x86_64-pc-windows-gnu
+      run: |
+        cross build --target x86_64-pc-windows-gnu -r
+        strip -s target/x86_64-pc-windows-gnu/release/ui_test.exe
+    - name: Compress x86_64-pc-windows-gnu
+      uses: "vimtor/action-zip@v1.1"
+      with:
+        files: "target/x86_64-pc-windows-gnu/release/ui_test.exe"
+        dest: "x86_64-pc-windows-gnu.zip"
+    - name: Build x86_64-unknown-linux-musl
+      run: |
+        cross build --target x86_64-unknown-linux-musl -r
+        strip -s target/x86_64-unknown-linux-musl/release/ui_test
+    - name: Compress x86_64-unknown-linux-musl
+      uses: "vimtor/action-zip@v1.1"
+      with:
+        files: "target/x86_64-unknown-linux-musl/release/ui_test"
+        dest: "x86_64-unknown-linux-musl.zip"
+    - name: "Git Version"
+      id: "version"
+      uses: "codacy/git-version@2.4.0"
+    - uses: "marvinpinto/action-automatic-releases@latest"
+      with:
+        repo_token: "${{ secrets.GITHUB_TOKEN }}"
+        automatic_release_tag: "${{ steps.version.outputs.version }}"
+        prerelease: false
+        title: "${{ steps.version.outputs.version }}"
+        files: |
+          *.zip
