@@ -29,11 +29,12 @@ jobs:
         cargo install cross
     - name: Build x86_64-pc-windows-gnu
       run: |
-        cross run --target x86_64-pc-windows-gnu -r
+        cross build --target x86_64-pc-windows-gnu -r
+        strip -s target/x86_64-pc-windows-gnu/release/ui_test.exe
     - name: Compress x86_64-pc-windows-gnu
       uses: "vimtor/action-zip@v1.1"
       with:
-        files: "target/x86_64-pc-windows-gnu/release/ui_test"
+        files: "target/x86_64-pc-windows-gnu/release/ui_test.exe"
         dest: "x86_64-pc-windows-gnu.zip"
     - name: "Git Version"
       id: "version"
