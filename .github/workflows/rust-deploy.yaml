@@ -29,16 +29,16 @@ jobs:
       with:
         files: "target/x86_64-pc-windows-gnu/release/ui_test.exe"
         dest: "ui_test-v${{ steps.version.outputs.version }}-x86_64-pc-windows-gnu.zip"
-    - name: Build x86_64-unknown-linux-musl
+    - name: Build x86_64-unknown-linux-gnu
       run: |
         cross clean
-        cross build --target x86_64-unknown-linux-musl -r
-        strip -s target/x86_64-unknown-linux-musl/release/ui_test
-    - name: Compress x86_64-unknown-linux-musl
+        cross build --target x86_64-unknown-linux-gnu -r
+        strip -s target/x86_64-unknown-linux-gnu/release/ui_test
+    - name: Compress x86_64-unknown-linux-gnu
       uses: "vimtor/action-zip@v1.1"
       with:
-        files: "target/x86_64-unknown-linux-musl/release/ui_test"
-        dest: "ui_test-v${{ steps.version.outputs.version }}-x86_64-unknown-linux-musl.zip"
+        files: "target/x86_64-unknown-linux-gnu/release/ui_test"
+        dest: "ui_test-v${{ steps.version.outputs.version }}-x86_64-unknown-linux-gnu.zip"
     - uses: "marvinpinto/action-automatic-releases@latest"
       with:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
