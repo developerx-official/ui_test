@@ -1,6 +1,6 @@
 [package]
 name = "ui_test"
-version = "0.1.0"
+version = "0.0.1"
 edition = "2021"
 
 [dependencies]
@@ -8,3 +8,5 @@ eframe = "0.21.2"
 poll-promise = "0.2.0"
 ehttp = "0.2.0"
 anyhow = "1.0.69"
+self_update = "0.35.0"
+winconsole = { version = "0.11.1", features = [ "window" ] }

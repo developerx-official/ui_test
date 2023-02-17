@@ -12,31 +12,33 @@ jobs:
       with:
         ref: ${{ github.head_ref }}
         fetch-depth: 0
+    - name: "Git Version"
+      id: "version"
+      uses: "codacy/git-version@2.4.0"
     - name: Install podman and cross
       run: |
         sudo apt install -y podman
         cargo install cross
     - name: Build x86_64-pc-windows-gnu
       run: |
+        cross clean
         cross build --target x86_64-pc-windows-gnu -r
         strip -s target/x86_64-pc-windows-gnu/release/ui_test.exe
     - name: Compress x86_64-pc-windows-gnu
       uses: "vimtor/action-zip@v1.1"
       with:
         files: "target/x86_64-pc-windows-gnu/release/ui_test.exe"
-        dest: "x86_64-pc-windows-gnu.zip"
+        dest: "ui_test-v${{ steps.version.outputs.version }}-x86_64-pc-windows-gnu.zip"
     - name: Build x86_64-unknown-linux-musl
       run: |
+        cross clean
         cross build --target x86_64-unknown-linux-musl -r
         strip -s target/x86_64-unknown-linux-musl/release/ui_test
     - name: Compress x86_64-unknown-linux-musl
       uses: "vimtor/action-zip@v1.1"
       with:
         files: "target/x86_64-unknown-linux-musl/release/ui_test"
-        dest: "x86_64-unknown-linux-musl.zip"
-    - name: "Git Version"
-      id: "version"
-      uses: "codacy/git-version@2.4.0"
+        dest: "ui_test-v${{ steps.version.outputs.version }}-x86_64-unknown-linux-musl.zip"
     - uses: "marvinpinto/action-automatic-releases@latest"
       with:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
