@@ -118,22 +118,22 @@ fn render_main_body(ctx: &Context) {
                 ui.collapsing(RichText::new("About Us").size(18_f32), |ui| {
                     ui.label(RichText::new("In App, we strive to enable you to do your task!\n\
                    We do this by:\n\
-                   a) reason\n\
-                   b) reason\n\
-                   c) reason")
+                   a) reason one\n\
+                   b) reason two\n\
+                   c) reason three")
                         .size(15_f32));
                 });
                 ui.collapsing(RichText::new("Long paragraph").size(18_f32), |ui| {
                     ui.label(RichText::new("Unlike other apps, we leverage efficient strategies enabling you to do more with your time\n\
                    We do this by:\n\
-                   a) reason\n\
-                   b) reason\n\
-                   c) reason\n\
-                   d) reason\n\
-                   e) reason\n\
-                   f) reason\n\
-                   g) reason\n\
-                   h) reason\n\
+                   a) reason one\n\
+                   b) reason two\n\
+                   c) reason three\n\
+                   d) reason four\n\
+                   e) reason five\n\
+                   f) reason six\n\
+                   g) reason seven\n\
+                   h) reason eight\n\
                    i) reason")
                         .size(15_f32));
                 });
