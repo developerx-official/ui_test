@@ -124,7 +124,7 @@ fn render_main_body(ctx: &Context) {
                         .size(15_f32));
                 });
                 ui.collapsing(RichText::new("Long paragraph").size(18_f32), |ui| {
-                    ui.label(RichText::new("In App, we strive to enable you to do your task!\n\
+                    ui.label(RichText::new("Unlike other apps, we leverage efficient strategies enabling you to do more with your time\n\
                    We do this by:\n\
                    a) reason\n\
                    b) reason\n\
