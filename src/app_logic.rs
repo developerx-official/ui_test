@@ -50,7 +50,7 @@ impl eframe::App for MyApp {
                 .show(ctx, |ui| {
                     ui.columns(2, |ui| {
                         ui[0].vertical_centered_justified(|ui| {
-                            if ui.button("Cancel").clicked() {
+                            if ui.button("No").clicked() {
                                 self.show_confirmation_dialog = false;
                             }
                         });
