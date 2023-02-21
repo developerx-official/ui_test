@@ -1,10 +1,10 @@
 [package]
 name = "ui_test"
-version = "0.0.3"
+version = "0.0.4"
 edition = "2021"
 
 [dependencies]
-eframe = "0.21.2"
+eframe = "0.21.3"
 poll-promise = "0.2.0"
 ehttp = "0.2.0"
 anyhow = "1.0.69"
