@@ -4,9 +4,10 @@ version = "0.0.4"
 edition = "2021"
 
 [dependencies]
-eframe = "0.21.3"
-poll-promise = "0.2.0"
-ehttp = "0.2.0"
-anyhow = "1.0.69"
-self_update = { version = "0.35.0", features = [ "archive-zip", "compression-zip-deflate", "compression-zip-bzip2" ] }
-winconsole = { version = "0.11.1", features = [ "window" ] }
+eframe = { version = "0.21.3", default-features = true, features = [] }
+poll-promise = { version = "0.2.0", default-features = false, features = [] }
+ehttp = { version = "0.2.0", default-features = false, features = [] }
+anyhow = { version = "1.0.69", default-features = true, features = [] }
+self_update = { version = "0.35.0", default-features = false, features = ["archive-zip", "compression-zip-deflate", "compression-zip-bzip2", "rustls"] }
+winconsole = { version = "0.11.1", default-features = false, features = ["window"] }
+reqwest = { version = "0.11.14", default-features = false, features = ["rustls-tls"] }
