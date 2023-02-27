@@ -1,6 +1,6 @@
 [package]
 name = "ui_test"
-version = "0.0.5"
+version = "0.0.6"
 edition = "2021"
 
 [dependencies]
@@ -8,6 +8,6 @@ eframe = { version = "0.21.3", default-features = true, features = [] }
 poll-promise = { version = "0.2.0", default-features = false, features = [] }
 ehttp = { version = "0.2.0", default-features = false, features = [] }
 anyhow = { version = "1.0.69", default-features = true, features = [] }
-self_update = { version = "0.35.0", default-features = false, features = ["archive-zip", "compression-zip-deflate", "compression-zip-bzip2", "rustls"] }
+self_update = { version = "0.36.0", default-features = false, features = ["archive-zip", "compression-zip-deflate", "compression-zip-bzip2", "rustls"] }
 winconsole = { version = "0.11.1", default-features = false, features = ["window"] }
 reqwest = { version = "0.11.14", default-features = false, features = ["rustls-tls"] }
