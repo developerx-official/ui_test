@@ -1848,8 +1848,7 @@ dependencies = [
 [[package]]
 name = "poll-promise"
 version = "0.2.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "fcf2a02372dfae23c9c01267fb296b8a3413bb4e45fbd589c3ac73c6dcfbb305"
+source = "git+https://github.com/EmbarkStudios/poll-promise?rev=8c4d0d6e4d693cf54e9306950cb2f6d271c77080#8c4d0d6e4d693cf54e9306950cb2f6d271c77080"
 dependencies = [
  "static_assertions",
 ]
@@ -2590,7 +2589,7 @@ dependencies = [
 
 [[package]]
 name = "ui_test"
-version = "0.0.17"
+version = "0.0.18"
 dependencies = [
  "anyhow",
  "eframe",
