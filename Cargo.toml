@@ -4,7 +4,7 @@ version = "0.0.16"
 edition = "2021"
 
 [dependencies]
-eframe = { version = "0.21.3", default-features = true, features = [] }
+eframe = { version = "0.22.0", default-features = true, features = [] }
 poll-promise = { version = "0.2.0", default-features = false, features = [] }
 ehttp = { version = "0.2.0", default-features = false, features = [] }
 anyhow = { version = "1.0.71", default-features = true, features = [] }
