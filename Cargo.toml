@@ -9,7 +9,7 @@ eframe = { version = "0.22.0", default-features = true, features = [] }
 #poll-promise = { version = "0.2.0", default-features = false, features = [] }
 poll-promise = { git = "https://github.com/EmbarkStudios/poll-promise", rev = "8c4d0d6e4d693cf54e9306950cb2f6d271c77080" }
 ehttp = { version = "0.2.0", default-features = false, features = [] }
-anyhow = { version = "1.0.71", default-features = true, features = [] }
+anyhow = { version = "1.0.75", default-features = true, features = [] }
 self_update = { version = "0.37.0", default-features = false, features = ["archive-zip", "compression-zip-deflate", "compression-zip-bzip2", "rustls"] }
 winconsole = { version = "0.11.1", default-features = false, features = ["window"] }
 reqwest = { version = "0.11.18", default-features = false, features = ["rustls-tls"] }
